@@ -1,6 +1,3 @@
-import { BeerRepository } from "../../domain/repository/beerRepository";
-import { PunkApiBeerDeserializer } from "../../infrastructure/provider/punkApi/deserializer/punkApiBeerDeserializer";
-
 export type GetAllBeersDependencies = {
   beerRepository: BeerRepository;
 };

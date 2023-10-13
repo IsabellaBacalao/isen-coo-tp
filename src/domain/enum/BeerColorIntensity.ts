@@ -1,0 +1,17 @@
+export enum BeerColorIntensity {
+  PALE_LAGER = "Pale Lager",
+  GOLDEN_ALE = "Golden Ale",
+  WEISS = "Weiss",
+  IPA = "IPA",
+  SAISON = "Saison",
+  EXTRA_SPECIAL_BITTER = "Extra special bitter",
+  GARDE = "Garde",
+  AMBER = "Amber",
+  DUNKEL = "Dunkel",
+  PORTER = "Porter",
+  STOUT = "Stout",
+  BALTIC_PORTER = "Baltic Porter",
+  EXPORT_STOUT = "Export Stout",
+  IMPERIAL_STOUT = "Imperial Stout",
+  UNKNOWN = "Unknown",
+}

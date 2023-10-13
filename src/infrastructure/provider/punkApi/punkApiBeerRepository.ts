@@ -1,12 +1,14 @@
-import fetch from "node-fetch";
-import { Beer } from "../../../domain/entity/beer";
+import { Beer } from "../../../domain/entity/Beer";
 import { BeerRepository } from "../../../domain/repository/beerRepository";
-import { PunkApiBeerDeserializer } from "./punkApiBeerDeserializer";
+import { httpClient } from "../httpClient";
+import { PunkApiBeerDeserializer } from "./deserializer/punkApiBeerDeserializer";
 
 export class PunkApiBeerRepository implements BeerRepository {
   public async getAllBeers(): Promise<Beer[]> {
-    const response = await fetch("https://api.punkapi.com/v2/beers");
-    const beers = await response.json();
+    const response = await httpClient.get("/beers");
+    const beers = await response.data;
+
+    if (!beers?.length) return [];
 
     return beers.map((beer: any) => {
       return PunkApiBeerDeserializer.deserializeBeer(beer);

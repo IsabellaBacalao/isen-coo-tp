@@ -1,4 +1,6 @@
-type BeerDependencies = {
+import { BeerColorIntensity } from "../enum/BeerColorIntensity";
+
+export type BeerDependencies = {
   id: number;
   name: string;
 };
@@ -8,9 +10,9 @@ export class Beer {
   public name: string;
   public description?: string;
   public url?: string;
-  public alcoolDegree?: number;
-  public bitterness?: number;
-  public color?: string;
+  public alcoolByVolume?: 0;
+  public bitterness?: 0;
+  public color?: BeerColorIntensity;
 
   constructor({ id, name }: BeerDependencies) {
     this.id = id;

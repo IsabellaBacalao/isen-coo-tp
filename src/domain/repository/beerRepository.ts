@@ -1,4 +1,4 @@
-import { Beer } from "../entity/beer";
+import { Beer } from "../entity/Beer";
 
 export interface BeerRepository {
   getAllBeers(): Promise<Beer[]>;
