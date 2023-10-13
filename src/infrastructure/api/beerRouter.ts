@@ -1,12 +1,14 @@
-import {Router} from "express"
+import { Router } from "express";
+import { getAllBeers } from "../../application/use-case/getAllBeers";
 
-export function createBeerRouter(){
-    const router = Router()
-    router.get("/", (_, res)=>
+export const createBeerRouter = () => {
+  const router = Router();
+
+  router.get("/", (_, res) => {
     res.json({
-        beers : getAllBeers(),
-    }),
-    );
+      beers: getAllBeers(),
+    });
+  });
 
-    return router; 
-}
+  return router;
+};

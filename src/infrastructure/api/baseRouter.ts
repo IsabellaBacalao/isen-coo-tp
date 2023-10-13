@@ -1,14 +1,13 @@
+import { Router } from "express";
 
-import {Router} from "express"
+export const createBaseRouter = () => {
+  const router = Router();
 
-export function createBaseRouter(){
-    const router = Router()
-    
-    router.get("/", (_, res)=>
+  router.get("/", (_, res) => {
     res.json({
-        message : "I'm alive !",
-    }),
-    );
-    
-    return router; 
-}
+      message: "Hello World !",
+    });
+  });
+
+  return router;
+};
