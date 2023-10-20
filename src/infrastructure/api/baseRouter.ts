@@ -1,10 +1,7 @@
 import { Router } from "express";
-import { createBeerRouter } from "./beerRouter";
 
-export const createBaseRouter = () => {
+export function createBaseRouter() {
   const router = Router();
-
-  router.get("/beer", createBeerRouter());
 
   router.get("/", (_, res) => {
     res.json({
@@ -13,4 +10,4 @@ export const createBaseRouter = () => {
   });
 
   return router;
-};
+}
