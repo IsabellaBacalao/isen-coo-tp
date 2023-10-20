@@ -1,9 +1,9 @@
 import { TastedBeerRepository } from "../../domain/repository/tastedBeerRepository";
 
-export type GetAllTastedBeersUseCaseDependencies = {
+export type GetAllTastedBeersDependencies = {
   beerRepository: TastedBeerRepository;
 };
 
-export const getAllTastedBeerUseCase = async (deps: GetAllTastedBeersUseCaseDependencies) => {
+export const getAllTastedBeers = async (deps: GetAllTastedBeersDependencies) => {
   return await deps.beerRepository.getAllTastedBeers();
 };
