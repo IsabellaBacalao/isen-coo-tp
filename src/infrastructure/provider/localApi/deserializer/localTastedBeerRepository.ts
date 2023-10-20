@@ -1,7 +1,7 @@
 import { promises } from "fs";
 import { join } from "path";
-import { BeerTasted } from "../../../domain/entity/BeerTasted";
-import { TastedBeerRepository } from "../../../domain/repository/tastedBeerRepository";
+import { BeerTasted } from "../../../../domain/entity/BeerTasted";
+import { TastedBeerRepository } from "../../../../domain/repository/tastedBeerRepository";
 
 export class LocalTastedBeerRepository implements TastedBeerRepository {
   private filePath: string;
