@@ -1,7 +1,7 @@
-import { BeerTasted } from "../entity/BeerTasted";
+import { TastedBeer } from "../entity/TastedBeer";
 
 export interface TastedBeerRepository {
-  getAllTastedBeers(): Promise<BeerTasted[]>;
-  addTastedBeers(beer: BeerTasted): Promise<void>;
+  getAllTastedBeers(): Promise<TastedBeer[]>;
+  addTastedBeer(beer: TastedBeer): Promise<void>;
   setBeerLikedOpinionOnTastedBeer(id: number, hasLiked: boolean): Promise<void>;
 }
