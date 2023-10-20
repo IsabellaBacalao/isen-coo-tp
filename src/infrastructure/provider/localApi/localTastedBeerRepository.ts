@@ -1,20 +1,18 @@
 import { promises } from "fs";
 import { join } from "path";
-import { BeerTasted } from "../../../../domain/entity/BeerTasted";
-import { TastedBeerRepository } from "../../../../domain/repository/tastedBeerRepository";
+import { TastedBeer } from "../../../domain/entity/TastedBeer";
+import { TastedBeerRepository } from "../../../domain/repository/tastedBeerRepository";
 
 export class LocalTastedBeerRepository implements TastedBeerRepository {
   private filePath: string;
 
   constructor() {
-    this.filePath = join(__dirname, "../../../data/prefered-beer.json");
-  }
-  addTastedBeers(beer: BeerTasted): Promise<void> {
-    throw new Error("Method not implemented.");
+    this.filePath = join(__dirname, "../../../../data/tasted-beer.json");
   }
 
-  async getAllTastedBeers(): Promise<BeerTasted[]> {
+  async getAllTastedBeers(): Promise<TastedBeer[]> {
     try {
+      console.log(this.filePath);
       const data = await promises.readFile(this.filePath);
 
       return JSON.parse(data.toString()).tastedBeers;
@@ -24,7 +22,7 @@ export class LocalTastedBeerRepository implements TastedBeerRepository {
     }
   }
 
-  async addTastedBeer(tastedBeer: BeerTasted): Promise<void> {
+  async addTastedBeer(tastedBeer: TastedBeer): Promise<void> {
     const tastedBeers = await this.getAllTastedBeers();
 
     const hasAlreadyTasted = !!tastedBeers.find(({ id }) => id === tastedBeer.id);
