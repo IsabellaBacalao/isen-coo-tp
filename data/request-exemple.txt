@@ -1,0 +1,9 @@
+GET localhost:3000/beers/me/stats
+GET localhost:3000/beers/me
+GET localhost:3000/beers
+
+POST localhost:3000/beers/me 
+body-exemple : {"beerID" : "6"}
+
+PUT localhost:3000/beers/me
+body-exemple : {"beerID" : 6, "hasLiked" : true}

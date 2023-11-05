@@ -4,6 +4,6 @@ export type GetAllTastedBeersDependencies = {
   beerRepository: TastedBeerRepository;
 };
 
-export const getAllTastedBeers = async ({ beerRepository }: GetAllTastedBeersDependencies) => {
-  return await beerRepository.getAllTastedBeers();
+export const getPersonalBeerStatistics = async ({ beerRepository }: GetAllTastedBeersDependencies) => {
+  return await beerRepository.getPersonalBeerStatistics();
 };
