@@ -1,7 +1,12 @@
+import { SetBeerLikedOpinionOnTastedBeerBodyFormat } from "../../infrastructure/api/interface/request/bodyFormat/SetBeerLikedOpinionOnTastedBeerBodyFormat";
+import { PersonalBeerStatistics } from "../entity/PersonalBeerStatistics";
 import { TastedBeer } from "../entity/TastedBeer";
 
 export interface TastedBeerRepository {
   getAllTastedBeers(): Promise<TastedBeer[]>;
-  addTastedBeer(beer: TastedBeer): Promise<void>;
-  setBeerLikedOpinionOnTastedBeer(id: number, hasLiked: boolean): Promise<void>;
+  addTastedBeer(tastedBeer: TastedBeer): Promise<void>;
+  setBeerLikedOpinionOnTastedBeer(
+    setBeerLikedOpinionOnTastedBeerBodyFormat: SetBeerLikedOpinionOnTastedBeerBodyFormat,
+  ): Promise<void>;
+  getPersonalBeerStatistics(): Promise<PersonalBeerStatistics>;
 }

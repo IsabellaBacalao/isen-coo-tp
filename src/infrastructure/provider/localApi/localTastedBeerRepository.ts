@@ -2,6 +2,8 @@ import { promises } from "fs";
 import { join } from "path";
 import { TastedBeer } from "../../../domain/entity/TastedBeer";
 import { TastedBeerRepository } from "../../../domain/repository/tastedBeerRepository";
+import { PersonalBeerStatistics } from "../../../domain/entity/PersonalBeerStatistics";
+import { SetBeerLikedOpinionOnTastedBeerBodyFormat } from "../../api/interface/request/bodyFormat/SetBeerLikedOpinionOnTastedBeerBodyFormat";
 
 export class LocalTastedBeerRepository implements TastedBeerRepository {
   private filePath: string;
@@ -9,10 +11,15 @@ export class LocalTastedBeerRepository implements TastedBeerRepository {
   constructor() {
     this.filePath = join(__dirname, "../../../../data/tasted-beer.json");
   }
+  async getPersonalBeerStatistics(): Promise<PersonalBeerStatistics> {
+    let personalBeerStatistics = new PersonalBeerStatistics();
+    const tastedBeers = await this.getAllTastedBeers();
+    personalBeerStatistics.generatePersonalBeerStatistics(tastedBeers);
+    return personalBeerStatistics;
+  }
 
   async getAllTastedBeers(): Promise<TastedBeer[]> {
     try {
-      console.log(this.filePath);
       const data = await promises.readFile(this.filePath);
 
       return JSON.parse(data.toString()).tastedBeers;
@@ -41,10 +48,13 @@ export class LocalTastedBeerRepository implements TastedBeerRepository {
     );
   }
 
-  async setBeerLikedOpinionOnTastedBeer(id: number, hasLiked: boolean): Promise<void> {
+  async setBeerLikedOpinionOnTastedBeer(
+    setBeerLikedOpinionOnTastedBeerBodyFormat: SetBeerLikedOpinionOnTastedBeerBodyFormat,
+  ): Promise<void> {
+    const id = setBeerLikedOpinionOnTastedBeerBodyFormat.beerID;
+    const hasLiked = setBeerLikedOpinionOnTastedBeerBodyFormat.hasLiked;
     const tastedBeers = await this.getAllTastedBeers();
     const tastedBeer = tastedBeers.find((tastedBeer) => tastedBeer.id === id);
-
     if (!tastedBeer) {
       throw new Error("Not found");
     }
